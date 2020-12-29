@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="mahamevnawa melbourne live events">
+    <meta name="author" content="mahamevnawa melbourne">
+    <meta name="generator" content="Hugo 0.79.0">
+    <title>Live Events - Mahamevnawa Melbourne</title>
+
+    <link rel="canonical" href="https://stream7.live/mahamevnawa">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/docs/5.0/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/5.0/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/5.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico">
+    <meta name="theme-color" content="#7952b3">
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        .card {
+            cursor: pointer;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <main>
+
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light">Live Events</h1>
+                    <p class="lead text-muted">Mahamevnawa Melbourne</p>
+                    <p class="d-none">
+                        <a href="#" class="btn btn-primary my-2">Main call to action</a>
+                        <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="album py-5 bg-light">
+            <div class="container">
+
+                <div id="todayItem">
+
+                </div>
+
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="itemContainer">
+                    
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="text-muted py-5">
+        <div class="container">
+            <p class="float-end mb-1">
+                <a href="#">Back to top</a>
+            </p>
+            <p class="mb-1">Live Events</p>
+            <p class="mb-0">Visit Website <a href="https://mahamevnawa.org.au/">mahamevnawa.org.au</a>.</p>
+        </div>
+    </footer>
+
+    <div class="d-none" id="itemTemplate">
+        <div class="card shadow-sm">
+               
+            <img src="{{thumb}}" class="bd-placeholder-img card-img-top" >
+
+            <div class="card-body">
+                <p class="card-text">{{title}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        {{#if links.youtube}}
+                        <a class="btn btn-sm btn-link" href="{{links.youtube}}">
+                            <img src="icons/youtube.png" height="80">
+                        </a>
+                        {{/if}}
+                        {{#if links.facebook}}
+                        <a class="btn btn-sm btn-link" href="{{links.facebook}}">
+                            <img src="icons/facebook.png" height="80">
+                        </a>
+                        {{/if}}
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+    </script>
+    <script>
+        //$.get('events.json').then((res)=> {                 });
+        var items = [
+            {
+                date: new Date(2020, 12, 31, 19, 0),
+                title : "Satipatthana Sutta",
+                thumb: "img/img1.jpg",
+                details : "",
+                links: {
+                    youtube: "sdf",
+                    facebook: "sdf"
+                }
+            }
+        ];
+
+
+        var itemContainer = $('#itemContainer');
+        var template = Handlebars.compile(document.getElementById('itemTemplate').innerHTML);
+
+            for(var i=0; i < items.length; i++){
+                var item = items[i];
+
+                item.defaultLink = item.links.youtube || items.links.facebook;
+
+                var $item = $(template(item));
+                $item.data('item', item);
+                itemContainer.append($item);
+
+                $item.on('click', function(){
+                    var _ = $(this).data('item');
+                    window.open(_.defaultLink, '_blank');
+                });
+            }
+
+    </script>
+</body>
+
+</html>
